@@ -149,7 +149,7 @@ func (d Decimal) SubRandomPercent(min float64, max float64) Decimal {
 }
 
 func (d Decimal) Distance(to Decimal) Decimal {
-	return d.Sub(to).Abs()
+	return NewFromDecimal(d.Sub(to).Abs())
 }
 
 func (from Decimal) DistancePercent(to Decimal) Decimal {
