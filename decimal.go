@@ -44,6 +44,10 @@ func NewFromString(str string) (Decimal, error) {
 	}, err
 }
 
+func (d Decimal) Abs() Decimal {
+	return NewFromDecimal(d.Decimal.Abs())
+}
+
 func (d Decimal) Add(add Decimal) Decimal {
 	return NewFromDecimal(d.Decimal.Add(add.Decimal))
 }
@@ -109,7 +113,7 @@ func (d Decimal) Median(v Decimal) Decimal {
 }
 
 func (d Decimal) SpreadPercent(low Decimal, high Decimal) Decimal {
-	return NewFromDecimal(high.Sub(low).Mul(New(100)).Div(d).Abs())
+	return high.Sub(low).Mul(New(100)).Div(d).Abs()
 }
 
 func (d Decimal) Round(places int32) Decimal {
@@ -149,11 +153,11 @@ func (d Decimal) SubRandomPercent(min float64, max float64) Decimal {
 }
 
 func (d Decimal) Distance(to Decimal) Decimal {
-	return NewFromDecimal(d.Sub(to).Abs())
+	return d.Sub(to).Abs()
 }
 
 func (from Decimal) DistancePercent(to Decimal) Decimal {
-	return NewFromDecimal(from.Sub(to).Mul(New(100)).Div(from).Abs())
+	return from.Sub(to).Mul(New(100)).Div(from).Abs()
 }
 
 func (d Decimal) DistancePercentFromLow(to Decimal) Decimal {
