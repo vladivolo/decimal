@@ -68,6 +68,10 @@ func (d Decimal) Shift(shift int32) Decimal {
 	return NewFromDecimal(d.Decimal.Shift(shift))
 }
 
+func (d Decimal) Float64() float64 {
+	return d.Decimal.InexactFloat64()
+}
+
 func (d Decimal) Miser(precision int32) Decimal {
 	return New(1).Shift(-precision)
 }
